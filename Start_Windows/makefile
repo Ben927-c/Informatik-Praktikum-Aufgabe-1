@@ -29,7 +29,7 @@ game.o: game.c
 	$(CC) -c $(CFLAGS) game.c
 
 graphicalGame.o: graphicalGame.c
-	$(CC) -I$(raylibfolder) -c $(CFLAGS) graphicalGame.c
+	$(CC) -I$(raylib_folder) -c $(CFLAGS) graphicalGame.c
 
 # --------------------------
 # Unit Tests
