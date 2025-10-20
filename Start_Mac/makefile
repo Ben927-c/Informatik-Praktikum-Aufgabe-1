@@ -4,7 +4,7 @@ LDFLAGS = -framework OpenGL -framework CoreFoundation -framework CoreGraphics -f
 ARCH := $(shell uname -m)
 BINARIES = ./macos-$(ARCH)
 
-raylib_folder = ./raylib
+raylibfolder = ./raylib
 unityfolder = ./unity
 
 # --------------------------

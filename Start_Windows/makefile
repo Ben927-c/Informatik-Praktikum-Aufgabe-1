@@ -1,9 +1,9 @@
 CC = gcc
-CFLAGS = -g -Wall -I$(raylibfolder)
+CFLAGS = -g -Wall
 LDFLAGS = -lopengl32 -lgdi32 -lwinmm
 BINARIES = ./windows
 
-raylib_folder = ./raylib
+raylibfolder = ./raylib
 unityfolder = ./unity
 
 # --------------------------
@@ -11,7 +11,6 @@ unityfolder = ./unity
 # --------------------------
 wordsalad_initial:
 	$(CC) -o wordsalad_initial $(BINARIES)/libwordsalad_complete.a $(BINARIES)/libraylib.a $(LDFLAGS)
-
 
 # --------------------------
 # Normales Spiel bauen
@@ -29,7 +28,7 @@ game.o: game.c
 	$(CC) -c $(CFLAGS) game.c
 
 graphicalGame.o: graphicalGame.c
-	$(CC) -I$(raylib_folder) -c $(CFLAGS) graphicalGame.c
+	$(CC) -I$(raylibfolder) -c $(CFLAGS) graphicalGame.c
 
 # --------------------------
 # Unit Tests
