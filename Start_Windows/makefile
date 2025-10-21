@@ -22,7 +22,7 @@ main.o: main.c
 	$(CC) -c $(CFLAGS) main.c
 
 input.o: input.c
-	$(CC) -c $(CFLAGS)input.c
+	$(CC) -c $(CFLAGS) input.c
 
 game.o: game.c
 	$(CC) -c $(CFLAGS) game.c
