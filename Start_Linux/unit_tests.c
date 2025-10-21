@@ -101,7 +101,37 @@ void test_createWordSalad_too_small(void) {
     }
 }
 
+void test_createWordSalad_allWordsPlaced() {
+    char words[3][MAX_WORD_LEN] = {"CAT", "DOG", "MOUSE"};
+    char saladHoriz[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN];
+    char saladVert[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN];
+
+    int placed = createWordSalad(saladHoriz, 20, words, 3);
+    for(int i = 0; i < MAX_SEARCH_FIELD_LEN; i++)
+    {
+        for(int j = 0; j < MAX_SEARCH_FIELD_LEN; j++)
+        {
+            saladVert[j][i] = saladHoriz[i][j];
+        }
+    }
+
+    for(int i = 0; i < 3; i++) {
+        const char* word = words[i];
+        int wordFound = 0;
+        for(int j = 0; j < MAX_SEARCH_FIELD_LEN; j++)
+        {
+            const char* row = saladHoriz[j];
+            const char* col = saladVert[j];
+            wordFound |= strstr(row, word) || strstr(col, word);
+        }
+        TEST_ASSERT_TRUE_MESSAGE(wordFound, "Not all words were placed.");
+    }
+
+    TEST_ASSERT_EQUAL_INT(3, placed);
+}
+
 // ---------- Test Setup und TearDown Funktionen ----------
+
 // Hier Setup- und TearDown-Funktionen definieren,
 // falls Vor- und Nachbereitungen für die Tests benötigt.
 
@@ -134,6 +164,7 @@ int main(void) {
     RUN_TEST(test_readWords_empty_file);
     RUN_TEST(test_createWordSalad_all_fit);
     RUN_TEST(test_createWordSalad_too_small);
+    RUN_TEST(test_createWordSalad_allWordsPlaced);
 
     int result = UNITY_END();  // Test-Ergebnisse
     print_test_result(result);
