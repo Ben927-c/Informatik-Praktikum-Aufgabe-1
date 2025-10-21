@@ -43,4 +43,4 @@ test: input.o game.o unit_tests.c $(BINARIES)/libunity.a
 # Clean
 # --------------------------
 clean:
-	rm -f *.o wordsalad
+	rm -f *.o wordsalad $(TEST_BIN)
