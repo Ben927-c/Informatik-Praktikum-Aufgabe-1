@@ -1,9 +1,9 @@
 CC = gcc
-CFLAGS = -g -Wall -I$(raylibfolder)
+CFLAGS = -g -Wall
 LDFLAGS = -lGL -lX11 -lm
 BINARIES = ./linux
 
-raylib_folder = ./raylib
+raylibfolder = ./raylib
 unityfolder = ./unity
 
 # --------------------------
@@ -28,7 +28,7 @@ game.o: game.c
 	$(CC) $(CFLAGS) -c game.c
 
 graphicalGame.o: graphicalGame.c
-	$(CC) $(CFLAGS) -c graphicalGame.c
+	$(CC) $(CFLAGS) -I$(raylibfolder) -c graphicalGame.c
 
 # --------------------------
 # Unit Tests

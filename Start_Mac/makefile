@@ -4,7 +4,7 @@ LDFLAGS = -framework OpenGL -framework CoreFoundation -framework CoreGraphics -f
 ARCH := $(shell uname -m)
 BINARIES = ./macos-$(ARCH)
 
-raylib_folder = ./raylib
+raylibfolder = ./raylib
 unityfolder = ./unity
 
 # --------------------------
@@ -43,4 +43,4 @@ test: input.o game.o unit_tests.c $(BINARIES)/libunity.a
 # Clean
 # --------------------------
 clean:
-	rm -f *.o wordsalad
+	rm -f *.o wordsalad $(TEST_BIN)
