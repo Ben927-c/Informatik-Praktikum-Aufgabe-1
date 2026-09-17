@@ -1,5 +1,0 @@
-Yeti,Nessie Werwolf; Vampir
-Monster
-Hydra;Frankenstein
-Dracula;KingKong;Gremlin;Kobold,Hexe;Poltergeist
-Gespenst, Oger
