@@ -2,11 +2,10 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
-// Klappt bestimmt und hallo
 
 #define MAX_RAND_TRIES_PER_WORD 10
 #define EMPTY_CHAR 0
-//Test1234
+
 //TODO: Spiellogik implementieren:
 /* * Wörter aus der Wortliste zufällig horizontal oder vertikal platzieren
    * restliche Felder mit zufälligen Buchstaben füllen */
