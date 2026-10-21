@@ -2,6 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <string.h>
+// Klappt bestimmt und hallo
 
 #define MAX_RAND_TRIES_PER_WORD 10
 #define EMPTY_CHAR 0
