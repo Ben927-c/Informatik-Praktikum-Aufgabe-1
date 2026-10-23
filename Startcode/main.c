@@ -40,6 +40,15 @@ int main(int argc, char *argv[])
             // Check if all words were successfully placed
             // Start the game if successful
             // error message if some words couldn't be placed
+            if (placedWords == wordCount)
+            {
+                //Spielstart muss hier noch eingefügt werden
+            }
+            else
+            {
+                fprintf("Error: Es konnten nur %u von %u Wörtern platziert werden", placedWords, wordCount);
+                exitCode = EXIT_FAILURE;
+            }
 
         }
         else
