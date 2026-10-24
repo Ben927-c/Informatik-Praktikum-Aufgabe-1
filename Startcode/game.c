@@ -15,61 +15,81 @@ int createWordSalad(char salad[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN], unsi
 {
 srand(time(NULL)); //Zufallszahl erstellen
 
-if (wordCount > 0){
-   int wordIndex = rand() % wordCount; //Einzelnes Wort aus dem Array herausnehmen
-   int wordLen = strlen(words[wordIndex]); //Wortlänge bestimmen
-   int direction = rand() % 2; //Richtung bestimmen
-   int row;
-   int col;
-   int canPlace = 1;
-   
-   //Startzeile beliebig und Spalte eingeschrenkt
-   if (searchFieldLen > 0 && wordLen <= searchFieldLen){
-      if (direction ==  0){
-            row = rand() % searchFieldLen;
-            col = rand() % (searchFieldLen - wordLen + 1);
-            
+if (wordCount > 0) {
 
-         for(int i = 0; i <= wordLen -1 ; i++){
-            if (salad[row][col + i] != EMPTY_CHAR) {
-               canPlace = 0;
-               break;
+    int row;
+    int col;
+
+    // Jedes Wort der Reihe nach bearbeiten
+    for (unsigned int wordIndex = 0; wordIndex < wordCount; wordIndex++) {
+
+        int wordLen = strlen(words[wordIndex]);
+
+        // Prüfen, ob das Wort ins Spielfeld passt
+        if (searchFieldLen > 0 && wordLen > 0 && wordLen <= searchFieldLen) {
+
+            for (int versuche = 0; versuche < MAX_RAND_TRIES_PER_WORD; versuche++) {
+
+                int direction = rand() % 2;
+                int canPlace = 1;
+
+                // Horizontale Platzierung
+                if (direction == 0) {
+
+                    row = rand() % searchFieldLen;
+                    col = rand() % (searchFieldLen - wordLen + 1);
+
+                    // Prüfen, ob alle benötigten Felder frei sind
+                    for (int i = 0; i < wordLen; i++) {
+                        if (salad[row][col + i] != EMPTY_CHAR) {
+                            canPlace = 0;
+                            break;
+                        }
+                    }
+
+                    // Wort eintragen, wenn alle Felder frei sind
+                    if (canPlace == 1) {
+                        for (int i = 0; i < wordLen; i++) {
+                            salad[row][col + i] = words[wordIndex][i];
+                        }
+                        break;
+                    }
+                }
+
+                // Vertikale Platzierung
+                else {
+
+                    col = rand() % searchFieldLen;
+                    row = rand() % (searchFieldLen - wordLen + 1);
+
+                    // Prüfen, ob alle benötigten Felder frei sind
+                    for (int i = 0; i < wordLen; i++) {
+                        if (salad[row + i][col] != EMPTY_CHAR) {
+                            canPlace = 0;
+                            break;
+                        }
+                    }
+
+                    // Wort eintragen, wenn alle Felder frei sind
+                    if (canPlace == 1) {
+                        for (int i = 0; i < wordLen; i++) {
+                            salad[row + i][col] = words[wordIndex][i];
+                        }
+                        break;
+                    }
+                }
             }
-            
-       }
-      }
-
-
-
-
-   //Startspalte beliebig und Spalte eingeschrenkt
-      else {
-         col = rand() % searchFieldLen;
-         row = rand() % (searchFieldLen - wordLen + 1);
-
-            for(salad[row + i][col] != EMPTY_CHAR){
-               canPlace = 0;
-               break;
-         
-      }
-      
-   }
+        }
+    }
 }
+
+// Alle übrigen Felder mit zufälligen Buchstaben füllen
+for (unsigned int row = 0; row < searchFieldLen; row++) {
+    for (unsigned int col = 0; col < searchFieldLen; col++) {
+
+        if (salad[row][col] == EMPTY_CHAR) {
+            salad[row][col] = 'A' + rand() % 26;
+        }
+    }
 }
-   
-
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
 }
