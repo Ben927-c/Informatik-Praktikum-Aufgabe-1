@@ -14,9 +14,31 @@ int readWords(FILE *file, char words[][MAX_WORD_LEN], unsigned int maxWordCount)
     }
 
     unsigned int counter = 0;
-    //Stellt sicher, dass eine leere Datei, zu viele Wörter oder ein zu langes Wort zum Abbruch führen
-    while(counter < maxWordCount && fscanf(file, "%99s", words[counter]) == 1){ 
-        counter++;
+    char line[1024]; //Gilt für eine Zeile
+
+    //Einzelne Zeile, Wort für Wort einlesen
+    while(counter < maxWordCount && fgets(line, sizeof(line), file) != NULL){ 
+        //Trennzeichen berücksichtigen
+        char *token = strtok(line, ",; \r\n\t");
+
+        while(token != NULL && counter < maxWordCount){
+            
+            //Hier müssen noch Buchstaben von klein nach groß umgeschireben werden
+            for(int i = 0; token[i] != '\0'; i++)
+            {
+                if(token[i] >= 97 && token [i] <= 122){
+                    token[i] -= 32;
+                }
+            }
+            //einzelnes Wort kopieren
+            strncpy(words[counter], token, MAX_WORD_LEN - 1);
+            //Sicherheitshalber um nachfolgende Vorgänge nicht zu behindern
+            words[counter][MAX_WORD_LEN - 1] = '\0';
+
+            counter++;
+            //nächstes Wort aus der Zeile nehmen
+            token = strtok(NULL, ",; \r\n\t");
+        }
     }
 
     return counter;

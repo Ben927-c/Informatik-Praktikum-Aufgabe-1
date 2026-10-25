@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define MAX_RAND_TRIES_PER_WORD 10
+#define MAX_RAND_TRIES_PER_WORD 1000
 #define EMPTY_CHAR 0
 
 //TODO: Spiellogik implementieren:

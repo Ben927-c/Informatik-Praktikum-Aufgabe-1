@@ -43,10 +43,11 @@ int main(int argc, char *argv[])
             if (placedWords == wordCount)
             {
                 //Spielstart muss hier noch eingefügt werden
+                startGame(wordSalad, SALAD_SIZE, words, wordCount, 800);
             }
             else
             {
-                fprintf("Error: Es konnten nur %u von %u Wörtern platziert werden", placedWords, wordCount);
+                fprintf(stderr, "Error: Es konnten nur %u von %u Wörtern platziert werden\n", placedWords, wordCount);
                 exitCode = EXIT_FAILURE;
             }
 
