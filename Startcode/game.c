@@ -14,11 +14,12 @@
 int createWordSalad(char salad[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN], unsigned int searchFieldLen, const char words[][MAX_WORD_LEN], unsigned int wordCount)
 {
 srand(time(NULL)); //Zufallszahl erstellen
-
+int counterWords = 0;
 if (wordCount > 0) {
 
     int row;
     int col;
+   
 
     // Jedes Wort der Reihe nach bearbeiten
     for (unsigned int wordIndex = 0; wordIndex < wordCount; wordIndex++) {
@@ -52,7 +53,8 @@ if (wordCount > 0) {
                         for (int i = 0; i < wordLen; i++) {
                             salad[row][col + i] = words[wordIndex][i];
                         }
-                        break;
+                        counterWords++;
+                        break;//Wort erfolgreich eingetragen
                     }
                 }
 
@@ -75,7 +77,8 @@ if (wordCount > 0) {
                         for (int i = 0; i < wordLen; i++) {
                             salad[row + i][col] = words[wordIndex][i];
                         }
-                        break;
+                        counterWords++;
+                        break;//Wort erfolgreich eingetragen
                     }
                 }
             }
@@ -83,13 +86,15 @@ if (wordCount > 0) {
     }
 }
 
+
 // Alle übrigen Felder mit zufälligen Buchstaben füllen
 for (unsigned int row = 0; row < searchFieldLen; row++) {
     for (unsigned int col = 0; col < searchFieldLen; col++) {
-
+         //Nur leere Felder verändern
         if (salad[row][col] == EMPTY_CHAR) {
             salad[row][col] = 'A' + rand() % 26;
         }
     }
 }
+return counterWords;
 }

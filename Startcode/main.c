@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         if(file != NULL)
         {
             unsigned int placedWords = 0;
-            char wordSalad[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN]; // 2D array to store the word salad
+            char wordSalad[MAX_SEARCH_FIELD_LEN][MAX_SEARCH_FIELD_LEN] = {0}; // 2D array to store the word salad
 
             // Read words from file and store in 'words' array
             wordCount = readWords(file, words, MAX_NUMBER_OF_WORDS);
